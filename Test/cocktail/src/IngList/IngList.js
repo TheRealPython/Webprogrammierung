@@ -6,15 +6,16 @@ class IngList extends React.Component{
     render(){
 
         const { ingredients } = this.props;
-        return(<div className='ingList'>
+
+        return(<div className='ingListContainer'>
             {
                 ingredients.map((_ingredient, _index) =>{
                     return(
-                        <IngItem updateIngFunction={this.updateIng} key = {_index}>{_ingredient}</IngItem>
+                        <IngItem updateIngFunction={this.updateIng} key = {_index} ingredient = {_ingredient}></IngItem>
                     )
                 })
             }
-        </div>)
+        </div>);
     }
     updateIng = (ingredient) => {
         this.props.updateIngFunction(ingredient);

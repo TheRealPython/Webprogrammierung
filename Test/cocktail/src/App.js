@@ -24,8 +24,20 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 
 import Nav from './Nav';
+import About from './About';
+import Shop from './Shop';
 
 
+// import {
+//   BrowserRouter as Router,
+//   Switch,
+//   Route,
+//   Link
+// } from "react-router-dom";
+
+// export default function App() {
+//   return (
+   
 class App extends React.Component {
 
   constructor(){
@@ -34,15 +46,41 @@ class App extends React.Component {
       ingredients: []
     };
   }
+
+
+ 
+
   render(){
+    
     return(<div>
+      <Router>
+        <div className="Navigon">
+          <Nav />
+          <Switch>
+          <Route path='/' exact component={Home} />
+          <Route path="/about" component={About} />
+          <Route path="/Shop" component={Shop} />
+          </Switch>
+          {/* <Route path="/about" component={About} /> */}
+        </div>
+      </Router>
+
+
+
+
+
       
         <AddIng addIngFunction={this.addIng}></AddIng>
-        <IngList updateIngFunction={this.updateIng} ingredients={this.state.ingredients}></IngList>
-      
+        <IngList  updateIngFunction = {this.updateIng} ingredients={this.state.ingredients}></IngList>
+      {/* ingredient={this.updateIng} */}
     </div>);
   }
 
+
+
+
+
+  
   componentDidMount = () => {
     const ingredients = localStorage.getItem('ingredients');
     if (ingredients){
@@ -53,17 +91,18 @@ class App extends React.Component {
     }
   }
 
-  AddIng = async(ingredient) => {
+  addIng = async (ingredient) => {
     await this.setState({ingredients: [...this.state.ingredients, {
         text: ingredient,
         completed: false
-    }] });
-    localStorage.setItem('ingredients', JSON.stringify(this.state.ingredients))
+    }] 
+  });
+    localStorage.setItem('ingredients', JSON.stringify(this.state.ingredients));
     console.log(localStorage.getItem('ingredients'));
 
 }
 
-updateIng = (ingredient) => {
+updateIng = async (ingredient) => {
   const newIngredients = this.state.ingredients.map(_ingrdient => {
     if(ingredient === _ingrdient)
       return {
@@ -71,11 +110,19 @@ updateIng = (ingredient) => {
         completed: !ingredient.completed
       }
     else
-      return ingredient
+      return _ingrdient
   });
+  await this.setState({ ingredients: newIngredients});
+  localStorage.setItem('ingredients', JSON.stringify(this.state.ingredients));
 }
 
 }
+
+const Home = () => (
+  <div>
+    <h1>Home Page</h1>
+  </div>
+)
 
 export default App;
 

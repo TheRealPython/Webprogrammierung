@@ -1,4 +1,6 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 
 class AddIng extends React.Component{
 
@@ -10,13 +12,16 @@ class AddIng extends React.Component{
     }
     render(){
         return(<div className='addIngContainer'>
-            <form>
-                <input onChange={(event) => this.updateInput(event)} type='text'></input>
+            <form onSubmit={(event)=> this.submitIng(event)}>
+                <input id ='addIngInput' onChange={(event) => this.updateInput(event)} type='text'></input>
+                {/* <button type ='submit'>Add ingredient</button>                 */}
+                <Button variant="contained" color="primary"type ='submit'>Add ingredient
+                </Button>
             </form>
-            <button onSubmit={(event)=> this.submitIng(event)} type = 'submit'>Add ingredient</button>
-            
+           
             </div>);
-    }
+    
+}
 
 
 updateInput = (event) => {
@@ -25,7 +30,8 @@ updateInput = (event) => {
 
 submitIng = (event) => {
     event.preventDefault();
-    this.props.addIngFunction(this.state.ingredient)
+    this.props.addIngFunction(this.state.ingredient);
+    document.getElementById('addIngInput').value = '';
 }
 }
 
