@@ -1,4 +1,6 @@
 import React from 'react';
+//import { CheckBoxSelection, Inject, MultiSelectComponent } from '@syncfusion/ej2-react-dropdowns';
+import ReactMultiSelectCheckboxes from 'react-multiselect-checkboxes';
 import './App.css';
 import IngList from './IngList/IngList';
 // 
@@ -21,12 +23,10 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-
-
+import CheckboxContainer from './checkboxHandler';
 import Nav from './Nav';
 import About from "./About.js";
 import Shop from './Shop';
-
 
 // import {
 //   BrowserRouter as Router,
@@ -37,48 +37,173 @@ import Shop from './Shop';
 
 // export default function App() {
 //   return (
+
+const whatYouNeedForCocktail = [
+  {
+    label : "Rum",
+    value : "Rum",
+    checked : false
+  },
+  {
+    label : "Asbach",
+    value : "Asbach",
+    checked : false
+
+  } ,
+   {
+    label : "Stroh80",
+    value : "Stroh80",
+    checked : false
+
+  } ,
+   {
+    label : "Absinth",
+    value : "Absinth",
+    checked : false
+
+  },
+    {
+    label : "Vodka",
+    value : "Vodka",
+    checked : false
+  }
+]
+
+  const arrayOfData = [
+    {
+      id: '1 - Jerry',
+      name: 'Jerry'    
+    },
+    {
+      id: '2 - Elaine',
+      name: 'Elaine'    
+    },
+    {
+      id: '3 - Kramer',
+      name: 'Kramer'    
+    },
+    {
+      id: '4 - George',
+      name: 'George'    
+    },
+  ];
+
+let jsonObjectOfClicked = Array();
+
+
+function getValueOfMultipleSelectBox() {
+  var select =this.refs.input.getInputDOMNode();
+  var options = select.options;
+  var firstIndex = select.selectedIndex;
+  var selectedValues = [];
+  var currentOption;
+  if (firstIndex === -1) return [];
+  for (var i = firstIndex; i < options.length; ++i) {
+    currentOption = options[i];
+    if (currentOption.selected) {
+      selectedValues.push(currentOption.value);
+    }
+  }
+  return selectedValues;
+}
    
 class App extends React.Component {
 
-  constructor(){
-    super();
-    this.state = {
-      ingredients: []
+  // constructor(){
+  //   super();
+  //   this.state = {
+  //     ingredients: []
+  //   };
+  // }
+
+  constructor(props){
+    super(props)
+    this.state={
+      fruites: [
+        { label: 'Zitrone', value: 1, select: false },
+        { label: 'Blaubeeren', value: 2, select: true},
+
+        // '{id: 1, value: "banana", isChecked: false},
+        // {id: 2, value: "apple", isChecked: false},
+        // {id: 3, value: "mango", isChecked: false},
+        // {id: 4, value: "grap", isChecked: false}'
+
+      ]
     };
+
+
   }
+  // handleSelectChange = (selectedValue) =>{
+  //   this.setState({
+  //     selectedValue: selectedValue
+  //   });
+  // }
 
+  handleChangex = (event) => {
+    jsonObjectOfClicked = event;
+    console.log(jsonObjectOfClicked)
+}
 
+handleSubmit(event) {
+  alert('Your favorite flavor is: ' + this.state.value);
+  event.preventDefault();
+}
  
 
   render(){
     
     return(
+      <div>
       <Router>
         <div className="Navigon">
-          <Nav />
+          <nav className="white">
+        <div className="nav-wrapper">
+            <h3 className="black-text">Cocktail</h3>
+            <ul className='nav-links' id="nav-mobile" className="right">
+                <li><a href="/"><Link to="/">Home</Link></a></li>
+                <li><a href="/about"><Link to="/about">Cocktails</Link></a></li>
+                <li><a href="/shop"><Link to="/shop">Recepies</Link></a></li>
+            </ul>
+        </div>
+      </nav>
           <Switch>
           <Route path='/' exact component={Home} />
           <Route path="/about" component={About} />
           <Route path="/Shop" component={Shop} />
           </Switch>
           {/* <Route path="/about" component={About} /> */}
-        </div>
+          </div>
       </Router>
+<div className="row">
+  <div className="card">
+<div>
+  <form><ReactMultiSelectCheckboxes id="ourfuckingcheckbox" options={whatYouNeedForCocktail} onChange={this.handleChangex}/> <br /><br />
 
 
-
-
-
+  </form>
+  <div>
+    Selected value: {jsonObjectOfClicked}
+  </div>
+  </div>
+</div>
+</div> 
+</div>
 ); }
 }
     
 
 const Home = () => (
   <div>
-    <h1>Home Page</h1>
+    <h1 className="white-text">Home Page</h1>
   </div>
 )
- 
+
+const options = [
+  { label: 'Zitrone', value: 1, select: false },
+  { label: 'Blaubeeren', value: 2, select: true},
+];
+
+
  
 export default App;
 
