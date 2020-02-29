@@ -27,7 +27,7 @@ import CheckboxContainer from './checkboxHandler';
 import Nav from './Nav';
 import About from "./About.js";
 import Cocktail from "./Cocktail.js"
-import Shop from './Shop';
+import Recepie from './Recepie';
 
 // import {
 //   BrowserRouter as Router,
@@ -214,7 +214,7 @@ handleSubmit(event) {
             <ul className='nav-links' id="nav-mobile" className="right">
                 <li><a href="/"><Link to="/">Home</Link></a></li>
                 <li><a href="/about"><Link to="/about">About__</Link></a></li>
-                <li><a href="/shop"><Link to="/shop">Recepies</Link></a></li>
+                <li><a href="/recepie"><Link to="/recepie">Recepies</Link></a></li>
                 <li><a href="/cocktails"><Link to={{pathname: "/cocktails", 
                                                       state: {jsonObjectOfClicked: this.state}
                                                 }}>Cocktails</Link></a></li>
@@ -225,7 +225,7 @@ handleSubmit(event) {
           <Switch>
           <Route path='/' exact component={Home} />
           <Route path="/about" component={About} />
-          <Route path="/Shop" component={Shop} />
+          <Route path="/recepie" component={Recepie} />
           <Route path="/cocktails" exact component={Cocktail} />
           </Switch>
           {/* <Route path="/about" component={About} /> */}

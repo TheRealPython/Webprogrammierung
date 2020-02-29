@@ -1,7 +1,14 @@
 import React from 'react';
 import './App.css';
-import { render } from '@testing-library/react';
 
+// import { Router } from 'react-router';
+// import { Link } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
+import {BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+// const LinkBehavior = React.forwardRef((props, ref) => (
+//     <RouterLink ref={ref} to="/recepie" {...props} />
+//   ));
+import Recepie from './Recepie';
 
 class DebugMessage extends React.Component{
     checkForCocktail() {
@@ -65,6 +72,29 @@ class DebugMessage extends React.Component{
                                     <div className="card-content">
                             <span className="card-title">{label.name}</span>
                             <p>Percentage matching: {label.percentage}</p>
+
+
+                            <Router>
+        
+               <div><a href="/recepie"><Link to="/recepie">
+                   <Button cocktailDescr={this.state}>Recepies</Button> </Link></a>
+               </div>
+          <Switch>
+   
+          <Route path="/recepie" component={Recepie} />
+         
+          </Switch>
+        
+      </Router>
+                            {/* <Router path="/recepie" component={Recepie}>
+                                <div>
+                            <li><a href="/recepie">
+                            <Link to = '/recepie'>
+                            
+                            <Button variant = "contained" >Recepie</Button>
+                            </Link></a></li>
+                            </div>
+                            </Router> */}
                                         </div>
                                     </div>
                                 </div>

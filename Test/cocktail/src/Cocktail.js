@@ -4,6 +4,7 @@ import DebugMessage from './DebugMessage';
 import IngList from './IngList/IngList';
 // 
 import AddIng from './AddIng/addIng';
+import Recepie from './Recepie';
 //import { render } from '@testing-library/react';
 
 // function About(){
@@ -98,7 +99,11 @@ class Cocktail extends React.Component {
 
     return(
         <div className="row">
+            
         <DebugMessage cocktailData = {this.props} cocktailDesc = {CocktailDescription}/>
+        {/* {this.props.CocktailDescription.map ((elem) => ( */}
+        <Recepie cocktailDescr = {CocktailDescription}/>
+        {/* ))} */}
         </div>
         )
         
