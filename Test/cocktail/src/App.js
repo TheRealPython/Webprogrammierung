@@ -26,6 +26,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import CheckboxContainer from './checkboxHandler';
 import Nav from './Nav';
 import About from "./About.js";
+import Cocktail from "./Cocktail.js"
 import Shop from './Shop';
 
 // import {
@@ -39,34 +40,66 @@ import Shop from './Shop';
 //   return (
 
 const whatYouNeedForCocktail = [
-  {
+  { id: 1,
     label : "Rum",
     value : "Rum",
     checked : false
   },
-  {
+  { id: 2,
     label : "Asbach",
     value : "Asbach",
     checked : false
 
   } ,
-   {
+   { id: 3,
     label : "Stroh80",
     value : "Stroh80",
     checked : false
 
   } ,
-   {
+   { id: 4,
     label : "Absinth",
     value : "Absinth",
     checked : false
 
   },
     {
+      id: 5,
     label : "Vodka",
     value : "Vodka",
     checked : false
-  }
+  },
+  {
+    id: 6,
+  label : "OrangeJuice",
+  value : "OrangeJuice",
+  checked : false
+},
+{
+  id: 7,
+label : "Coke",
+value : "Coke",
+checked : false
+},
+{
+  id: 8,
+label : "PineappleJuice",
+value : "PineappleJuice",
+checked : false
+},
+{
+  id: 9,
+label : "Milk",
+value : "Milk",
+checked : false
+},
+{
+  id: 10,
+label : "PassionFruit",
+value : "PassionFruit",
+checked : false
+}
+
 ]
 
   const arrayOfData = [
@@ -91,21 +124,21 @@ const whatYouNeedForCocktail = [
 let jsonObjectOfClicked = Array();
 
 
-function getValueOfMultipleSelectBox() {
-  var select =this.refs.input.getInputDOMNode();
-  var options = select.options;
-  var firstIndex = select.selectedIndex;
-  var selectedValues = [];
-  var currentOption;
-  if (firstIndex === -1) return [];
-  for (var i = firstIndex; i < options.length; ++i) {
-    currentOption = options[i];
-    if (currentOption.selected) {
-      selectedValues.push(currentOption.value);
-    }
-  }
-  return selectedValues;
-}
+// function getValueOfMultipleSelectBox() {
+//   var select =this.refs.input.getInputDOMNode();
+//   var options = select.options;
+//   var firstIndex = select.selectedIndex;
+//   var selectedValues = [];
+//   var currentOption;
+//   if (firstIndex === -1) return [];
+//   for (var i = firstIndex; i < options.length; ++i) {
+//     currentOption = options[i];
+//     if (currentOption.selected) {
+//       selectedValues.push(currentOption.value);
+//     }
+//   }
+//   return selectedValues;
+// }
    
 class App extends React.Component {
 
@@ -119,17 +152,26 @@ class App extends React.Component {
   constructor(props){
     super(props)
     this.state={
-      fruites: [
-        { label: 'Zitrone', value: 1, select: false },
-        { label: 'Blaubeeren', value: 2, select: true},
+      testArr: [
+      {
+        label : "h",
+        value : "",
+        checked : false
+    
+      }]
+    
+    //   fruites: [
+    //     { label: 'Zitrone', value: 1, select: false },
+    //     { label: 'Blaubeeren', value: 2, select: true},
 
-        // '{id: 1, value: "banana", isChecked: false},
-        // {id: 2, value: "apple", isChecked: false},
-        // {id: 3, value: "mango", isChecked: false},
-        // {id: 4, value: "grap", isChecked: false}'
+    //     // '{id: 1, value: "banana", isChecked: false},
+    //     // {id: 2, value: "apple", isChecked: false},
+    //     // {id: 3, value: "mango", isChecked: false},
+    //     // {id: 4, value: "grap", isChecked: false}'
 
-      ]
+    //   ]
     };
+    this.handleChangex = this.handleChangex.bind(this);
 
 
   }
@@ -142,7 +184,17 @@ class App extends React.Component {
   handleChangex = (event) => {
     jsonObjectOfClicked = event;
     console.log(jsonObjectOfClicked)
+    //console.log(typeof jsonObjectOfClicked)
+    
+    this.setState((state) => {return {testArr: jsonObjectOfClicked}})
+    //const myObject = JSON.stringify(jsonObjectOfClicked) 
+    //console.log(this.state.testArr)
+
+    return jsonObjectOfClicked
+
 }
+
+
 
 handleSubmit(event) {
   alert('Your favorite flavor is: ' + this.state.value);
@@ -151,7 +203,7 @@ handleSubmit(event) {
  
 
   render(){
-    
+   
     return(
       <div>
       <Router>
@@ -161,15 +213,20 @@ handleSubmit(event) {
             <h3 className="black-text">Cocktail</h3>
             <ul className='nav-links' id="nav-mobile" className="right">
                 <li><a href="/"><Link to="/">Home</Link></a></li>
-                <li><a href="/about"><Link to="/about">Cocktails</Link></a></li>
+                <li><a href="/about"><Link to="/about">About__</Link></a></li>
                 <li><a href="/shop"><Link to="/shop">Recepies</Link></a></li>
+                <li><a href="/cocktails"><Link to={{pathname: "/cocktails", 
+                                                      state: {jsonObjectOfClicked: this.state}
+                                                }}>Cocktails</Link></a></li>
             </ul>
+           {/* state: {jsonObjectOfClicked: this.state.jsonObjectOfClicked} */}
         </div>
       </nav>
           <Switch>
           <Route path='/' exact component={Home} />
           <Route path="/about" component={About} />
           <Route path="/Shop" component={Shop} />
+          <Route path="/cocktails" exact component={Cocktail} />
           </Switch>
           {/* <Route path="/about" component={About} /> */}
           </div>
@@ -177,24 +234,32 @@ handleSubmit(event) {
 <div className="row">
   <div className="card">
 <div>
-  <form><ReactMultiSelectCheckboxes id="ourfuckingcheckbox" options={whatYouNeedForCocktail} onChange={this.handleChangex}/> <br /><br />
+  <form><ReactMultiSelectCheckboxes id="ourfuckingcheckbox" options={whatYouNeedForCocktail} onChange={this.handleChangex} /> <br /><br />
 
 
   </form>
   <div>
-    Selected value: {jsonObjectOfClicked}
+    {/* Selected value: {this.jsonObjectOfClicked} */}
   </div>
   </div>
 </div>
 </div> 
+
+<div className="Cocktail">
+
+  <Cocktail myArray = {this.state} />
+
 </div>
+
+</div>
+
 ); }
 }
     
 
 const Home = () => (
   <div>
-    <h1 className="white-text">Home Page</h1>
+    <h1 className="white-text">Home Page: Create YOUR Cocktail</h1>
   </div>
 )
 
