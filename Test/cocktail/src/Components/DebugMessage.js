@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import '../CSS/App.css';
 
 // import { Router } from 'react-router';
 // import { Link } from 'react-router-dom';
@@ -13,6 +13,16 @@ import Recepie from './Recepie';
 class DebugMessage extends React.Component{
     checkForCocktail() {
         let returnCocktails = Array()
+        if(this.getElementArray().length == 0){
+            returnCocktails.push({
+                name : "Please choose ingredients",
+                alcohol : '',
+                Description : 'Please select ingredients first',
+                percentage : '-',
+                output : ''
+            })
+            return returnCocktails
+        }
         if(this.getElementArray()[0].label == "No Data") {
             return returnCocktails 
         }
@@ -24,6 +34,7 @@ class DebugMessage extends React.Component{
                 let ids = cocktail.req_id
                 let amount = ids.length
                 let matching = 0
+                let output = ''
                 checkedIndregents.map(data => {
                     if(ids.includes(data.id)) {
                         matching += 1
@@ -31,14 +42,20 @@ class DebugMessage extends React.Component{
                 })
                 if(matching == 0) {
                     percentage = 0
-                } else {
+                }
+                else {
                     percentage = (matching / amount) * 100
                 }
+                if (percentage < 100) {
+                    output = "Please go shopping"
+                }
+
                 returnCocktails.push({
                     name : cocktail.name,
                     alcohol : cocktail.alcohol,
                     Description : cocktail.Description,
-                    percentage : percentage
+                    percentage : percentage,
+                    output : output
                 })
             })
         }
@@ -71,17 +88,20 @@ class DebugMessage extends React.Component{
                                     <div className="card">
                                     <div className="card-content">
                             <span className="card-title">{label.name}</span>
-                            <p>Percentage matching: {label.percentage}</p>
+                            <p>Matching ingredients: {label.percentage} %</p>
+                            <p>{label.output}</p>
 
 
                             <Router>
         
-               <div><a href="/recepie"><Link to="/recepie">
-                   <Button cocktailDescr={this.state}>Recepies</Button> </Link></a>
+               <div><a href="/recepie"><Link to={{pathname: "/recepie",
+            state: {description: label.Description}, 
+            test: {description: label.Description}}}>
+                   <Button cocktailDescr={label.Description}>Recepie</Button> </Link></a>
                </div>
           <Switch>
    
-          <Route path="/recepie" component={Recepie} />
+          <Route path="/recepie" component={Recepie} cocktailDescr={label.Description} cocktailName = {label.name} />
          
           </Switch>
         

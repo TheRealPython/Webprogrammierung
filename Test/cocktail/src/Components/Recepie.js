@@ -1,13 +1,14 @@
 import React from 'react';
-import './App.css';
+import '../CSS/App.css';
 import DebugMessage from './DebugMessage';
-import IngList from './IngList/IngList';
+import IngList from './Playground/IngList/IngList';
 
 
 
 
 
 class Recepie extends React.Component {
+    state = {}
     // constructor() {
     //     super();
     //     this.state = {
@@ -16,14 +17,23 @@ class Recepie extends React.Component {
     
         
     // console.log(this.props.cocktailDescr);
+    getDescription(){
+        if (this.props.location) {
+            if (this.props.location.test){
+                   return this.props.location.test.description
+            }
+         
+        }
+    }
+
     render() {
-        console.log(this.props);
+        console.log(this.props.location.test);
     return(
         
         <div className = "row">
          
              <div className="card-content">
-                 sdfasf
+               {this.getDescription()}
                 
                 </div>
             

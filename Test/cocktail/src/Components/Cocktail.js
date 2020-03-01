@@ -1,9 +1,9 @@
 import React from 'react';
-import './App.css';
+import '../CSS/App.css';
 import DebugMessage from './DebugMessage';
-import IngList from './IngList/IngList';
+import IngList from './Playground/IngList/IngList';
 // 
-import AddIng from './AddIng/addIng';
+import AddIng from './Playground/AddIng/addIng';
 import Recepie from './Recepie';
 //import { render } from '@testing-library/react';
 
@@ -102,7 +102,7 @@ class Cocktail extends React.Component {
             
         <DebugMessage cocktailData = {this.props} cocktailDesc = {CocktailDescription}/>
         {/* {this.props.CocktailDescription.map ((elem) => ( */}
-        <Recepie cocktailDescr = {CocktailDescription}/>
+        {/* <Recepie cocktailDescr = {CocktailDescription} /> */}
         {/* ))} */}
         </div>
         )
