@@ -1,121 +1,83 @@
 import React from 'react';
 import '../CSS/App.css';
-import DebugMessage from './DebugMessage';
-import IngList from './Playground/IngList/IngList';
-// 
-import AddIng from './Playground/AddIng/addIng';
-import Recepie from './Recepie';
-//import { render } from '@testing-library/react';
+import Logic from './Logic';
 
-// function About(){
-
-    // }
-
-
-    const CocktailDescription = [
-      { 
-        req_id: [6, 8, 10],
-        name : "FruitSplash",
-        alcohol : "No",
-        Description : "Mix Pineapple, Orange and Milk"
-      },
-      { req_id: [1, 7],
-        name : "RumBear",
-        alcohol : "Yes",
-        Description : "Mix Rum and Coke"
-      } ,
-      { req_id: [1, 2, 3, 4, 5],
-        name : "KillBill",
-        alcohol : "Yes",
-        Description : "Mix Rum, Vodka, Absinth, ..."
-      } ,
-      { req_id: [9, 8, 1],
-        name : "Pina Colada",
-        alcohol : "Yes",
-        Description : "Mix Rum and Coke"
-      },
-      { req_id: [9, 8, 1],
-        name : "Virgin Colada",
-        alcohol : "Yes",
-        Description : "Mix Rum and Coke"
-      }
-    ]
-
-
-
+// Full recepie description
+const CocktailDescription = [
+  {
+    req_id: [6, 8, 10],
+    name: "FruitSplash",
+    alcohol: "No",
+    Description: "Mix Pineapple, Orange and Milk"
+  },
+  {
+    req_id: [1, 7],
+    name: "RumBle",
+    alcohol: "Yes",
+    Description: "Mix 200ml Rum and 300ml Coke"
+  },
+  {
+    req_id: [1, 2, 4, 5],
+    name: "KillBill",
+    alcohol: "Yes",
+    Description: "Mix 100ml Rum, 100ml Vodka, 100ml Absinth and 100ml Asbach"
+  },
+  {
+    req_id: [9, 8, 1],
+    name: "Pina Colada",
+    alcohol: "Yes",
+    Description: "Mix 200ml Milk, 200ml Pineapple Juice and 100ml Rum"
+  },
+  {
+    req_id: [9, 8, 1],
+    name: "Virgin Colada",
+    alcohol: "No",
+    Description: "Mix 300 ml Milk and 200ml Pineapple Juice"
+  },
+  {
+    req_id: [3, 5],
+    name: "VodEng",
+    alcohol: "Yes",
+    Description: "Mix 300 ml Vodka and 200ml RBull"
+  },
+  {
+    req_id: [11],
+    name: "Beer4Epedemia",
+    alcohol: "Yes",
+    Description: "500ml Corona"
+  }
+]
 
 class Cocktail extends React.Component {
-    // constructor() {
-    //     super();
-    //     this.state = {
-    //         ingredients: []
-    //     };
+  render() {
+
+    // Some Logs on Console for Error Handling
+
+    // console.log(this.props.myArray.testArr)
+    // console.log(this.props.jsonObjectOfClicked)
+    // console.log(this.props.checkedArray)
+    // console.log(this.prps.)
+    // console.log(jsonObjectOfClicked)
+    // const data = JSON.parse(this.props.testArr);
+    // console.log(CocktailDescription[0].req_id)
+    // console.log(this.props)
+    // const data = this.props.myArray;
+    // console.log(JSON.stringify(data))
+    // const strng = JSON.stringify(data);
+    // const news = strng;
+    // console.log(strng)
 
 
-    render() {
+    return (
 
-        
-        //console.log(this.props.myArray.testArr)
-        //console.log(this.props.jsonObjectOfClicked)
-        //console.log(this.props.checkedArray)
-        // console.log(this.prps.)
-        // console.log(jsonObjectOfClicked)
-        //const data = JSON.parse(this.props.testArr);
-        console.log(CocktailDescription[0].req_id)
-        console.log(this.props)
-        const data = this.props.myArray;
-        console.log(JSON.stringify(data))
-        const strng = JSON.stringify(data);
-        const news = strng;
-        console.log(strng)
+      //   This component (Logic) contains complete logic of matching Cocktails.
+      //   Results are rendered per Cocktail in a <div> box.
 
-        // console.log(JSON.parse(news));
-        //strng.myArray
-        //  JSON.stringify(propsx.propsx.myArray.testArr)
-        // if(this.) {
-        //     if(this.props.myArray) {
-        //     if(Array.isArray(this.propsx.myArray.testArr)) {
-        //         console.log("Next Step")}}}
-    
-    // function match()
-
-    function CocktailName(CocktailDescription){
-            var l = CocktailDescription.length;
-            var name = CocktailDescription.name;
-            var alcohol = CocktailDescription.alcohol;
-
-            console.log(name)
-            
-     
-        //     name = CocktailDescription[]
-        ;
-        return (name)
-    }
-
-    function Frames(CocktailDescription){
-        CocktailDescription.forEach(element => {console.log(element)
-       return(element.name)})
-    }
-
-    return(
-        <div className="row">
-            
-        <DebugMessage cocktailData = {this.props} cocktailDesc = {CocktailDescription}/>
-        {/* {this.props.CocktailDescription.map ((elem) => ( */}
-        {/* <Recepie cocktailDescr = {CocktailDescription} /> */}
-        {/* ))} */}
-        </div>
-        )
-        
-        //this.props.myArray.testArr.map((todo) => ( <h3>{1 + 1}</h3>));
-        
-        
-        
-        //<div color= 'white'>HELLOOOOOOO</div>
-        // <div color='green'>Hi</div>
-        // </div>
-        // );
-    }
+      <div className="row">
+        <Logic cocktailData={this.props} cocktailDesc={CocktailDescription} />
+      </div>
+    )
+  }
 }
 
 export default Cocktail;

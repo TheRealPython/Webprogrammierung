@@ -25,8 +25,8 @@ const selectCocktail = [
   },
   {
     id: 3,
-    label: "Stroh80",
-    value: "Stroh80",
+    label: "RBull",
+    value: "RBull",
     checked: false
 
   },
@@ -45,8 +45,8 @@ const selectCocktail = [
   },
   {
     id: 6,
-    label: "OrangeJuice",
-    value: "OrangeJuice",
+    label: "Orange Juice",
+    value: "Orange Juice",
     checked: false
   },
   {
@@ -57,8 +57,8 @@ const selectCocktail = [
   },
   {
     id: 8,
-    label: "PineappleJuice",
-    value: "PineappleJuice",
+    label: "Pineapple Juice",
+    value: "Pineapple Juice",
     checked: false
   },
   {
@@ -69,10 +69,17 @@ const selectCocktail = [
   },
   {
     id: 10,
-    label: "PassionFruit",
-    value: "PassionFruit",
+    label: "Passion Fruit",
+    value: "Passion Fruit",
+    checked: false
+  },
+  {
+    id: 11,
+    label: "Corona",
+    value: "Corona",
     checked: false
   }
+
 
 ]
 
@@ -100,13 +107,13 @@ class App extends React.Component {
     //console.log(jsonObjectOfClicked)
     //console.log(typeof jsonObjectOfClicked)
 
-    this.setState((state) => { 
-      return { testArr: jsonObjectOfClicked } 
+    this.setState((state) => {
+      return { testArr: jsonObjectOfClicked }
     })
     return jsonObjectOfClicked
 
   }
-  
+
   //TEST STATE
   // handleSubmit(event) {
   //   alert('Your favorite flavor is: ' + this.state.value);
@@ -117,24 +124,25 @@ class App extends React.Component {
 
     return (
       <div>
-        <Router>  
+        <Router>
           <div className="Navigon">
             <nav className="white">
               <div className="nav-wrapper">
                 <h3 className="black-text">Cocktail</h3>
                 <ul className='nav-links' id="nav-mobile" className="right">
 
-                {/* Links/Routes:
-                      Cocktails: 
+                  {/* Links/Routes:
+                      
                       Recepie:    standard
                       Playground: standard
+                      Cocktails: added a state
                       Reset:      button automatically refreshs the page onClick */}
                   <li><a href="/cocktails"><Link to={{
                     pathname: "/cocktails",
                     state: { jsonObjectOfClicked: this.state }
                   }}>Cocktails</Link></a></li>
                   <li><a href="/recepie"><Link to="/recepie">Recepies</Link></a></li>
-                  <li><a href="/about" ><Link to="/about">*Playground*</Link></a></li>
+                  <li><a href="/about" ><Link to="/about">*Playground (inDev)*</Link></a></li>
                   <li><a href="/"><Link onClick={() => window.location.reload(false)} to="/" >Reset</Link></a></li>
                 </ul>
                 {/* state: {jsonObjectOfClicked: this.state.jsonObjectOfClicked} */}
@@ -151,7 +159,7 @@ class App extends React.Component {
           </div>
         </Router>
 
-      {/* Best Multiselect in React :) */}
+        {/* Best Multiselect in React :) */}
         <div className="row">
           <div className="card">
             <div>
@@ -175,6 +183,7 @@ class App extends React.Component {
 const Home = () => (
   <div>
     <h1 className="white-text">Welcome to YOUR Cocktail</h1>
+    <div style={{ color: 'white' }}>Please select your available ingredients to receive individual recepie suggestion</div>
   </div>
 )
 
